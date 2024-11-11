@@ -34,6 +34,26 @@ Run the container, assuming port `25565` is free:
 ./local_container.sh
 ```
 
+### Deployment
+
+Create SSM parameters:
+
+```sh
+# Create MC_SERVER_NAME parameter
+aws ssm put-parameter \
+    --name "/minecraft/mcServerName" \
+    --type "String" \
+    --value "your-server-name" \
+    --overwrite
+
+# Create MC_BUCKET_NAME parameter
+aws ssm put-parameter \
+    --name "/minecraft/mcBucketName" \
+    --type "String" \
+    --value "your-bucket-name" \
+    --overwrite
+```
+
 ## References
 
 - [Graceful Container Shutdown](https://aws.amazon.com/blogs/containers/graceful-shutdowns-with-ecs/)
