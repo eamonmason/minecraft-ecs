@@ -107,7 +107,10 @@ export class MinecraftEcsStack extends cdk.Stack {
       taskDefinition: taskDefinition,
       desiredCount: 1,
       assignPublicIp: true,
-      securityGroups: [securityGroup]
+      securityGroups: [securityGroup],
+      vpcSubnets: {
+        subnetType: ec2.SubnetType.PUBLIC
+      }
     });
 
     // Route 53 Hosted Zone
