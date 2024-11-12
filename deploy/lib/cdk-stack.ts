@@ -50,7 +50,7 @@ export class MinecraftEcsStack extends cdk.Stack {
     });
     
     const container = taskDefinition.addContainer('MinecraftContainer', {
-      image: ecs.ContainerImage.fromEcrRepository(repository, '39bdd06ffcf2961a5ad38a88983fceadf13a2f5e'),
+      image: ecs.ContainerImage.fromEcrRepository(repository, 'latest'),
       memoryLimitMiB: 8192,
       cpu: 1024, // 1 vCPU
       logging: ecs.LogDrivers.awsLogs({ streamPrefix: 'Minecraft' }),      
