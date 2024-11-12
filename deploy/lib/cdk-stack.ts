@@ -11,6 +11,7 @@ import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as dotenv from 'dotenv';
+import * as logs from 'aws-cdk-lib/aws-logs';
 
 dotenv.config();
 
@@ -48,12 +49,19 @@ export class MinecraftEcsStack extends cdk.Stack {
       cpu: 2048,
       memoryLimitMiB: 8192
     });
+
+    const logGroup = new logs.LogGroup(this, 'MinecraftLogGroup', {
+      retention: logs.RetentionDays.ONE_WEEK
+    });
     
     const container = taskDefinition.addContainer('MinecraftContainer', {
       image: ecs.ContainerImage.fromEcrRepository(repository, 'latest'),
       memoryLimitMiB: 8192,
       cpu: 1024, // 1 vCPU
-      logging: ecs.LogDrivers.awsLogs({ streamPrefix: 'Minecraft' }),      
+      logging: ecs.LogDrivers.awsLogs({ 
+        streamPrefix: 'Minecraft',
+        logGroup: logGroup
+      }),      
       environment: {        
         MC_SERVER_NAME: mcServerSSM.stringValue,
         MC_BUCKET_NAME: mcBucketSSM.stringValue
@@ -122,6 +130,7 @@ export class MinecraftEcsStack extends cdk.Stack {
     const updateDnsLambda = new nodejs.NodejsFunction(this, 'UpdateDnsLambda', {
       runtime: lambda.Runtime.NODEJS_18_X,
       timeout: cdk.Duration.seconds(60),
+      logRetention: logs.RetentionDays.ONE_WEEK // Set log retention to 7 days
     });
 
     // Grant necessary permissions to the Lambda function

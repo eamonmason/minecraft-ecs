@@ -15,5 +15,5 @@ SSM_PARAMETER_NAME="/minecraft/mcServerName"
 # Update the SSM parameter
 aws ssm put-parameter --name "$SSM_PARAMETER_NAME" --value "$MINECRAFT_WORLD" --type String --overwrite --region "$AWS_REGION"
 
-# Deploy the CDK stack
-cdk deploy --region "$AWS_REGION"
+# Deploy the CDK stack without confirmation
+cdk deploy --require-approval never --region "$AWS_REGION"
