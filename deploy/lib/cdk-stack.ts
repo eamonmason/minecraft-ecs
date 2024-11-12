@@ -21,7 +21,15 @@ export class MinecraftEcsStack extends cdk.Stack {
 
     // VPC
     const vpc = new ec2.Vpc(this, 'MinecraftVpc', {
-      maxAzs: 2
+      maxAzs: 2,
+      natGateways: 0, // Disable NAT Gateway
+      subnetConfiguration: [
+        {
+          cidrMask: 24,
+          name: 'Public',
+          subnetType: ec2.SubnetType.PUBLIC,
+        }
+      ]
     });
 
     // ECS Cluster
