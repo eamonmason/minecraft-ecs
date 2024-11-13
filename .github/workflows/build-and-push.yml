@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'container/**'
+  pull_request:
+    paths:
+      - 'container/**'
 
 jobs:
   build-and-push:
