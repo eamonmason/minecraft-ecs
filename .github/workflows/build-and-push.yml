@@ -1,15 +1,15 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'container/**'
-  pull_request:
-    paths:
-      - 'container/**'
-  workflow_dispath
+    push:
+      branches:
+        - main
+      paths:
+        - 'container/**'
+    pull_request:
+      paths:
+        - 'container/**'
+    workflow_dispatch:
 
 jobs:
   build-and-push:
