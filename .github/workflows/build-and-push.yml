@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - 'container/**'
+  workflow_dispath
 
 jobs:
   build-and-push:
