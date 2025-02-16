@@ -1,12 +1,8 @@
 {
   "dependencies": {
-    "aws-cdk-lib": "^2.0.0",
-    "constructs": "^10.0.0",
-    "@aws-cdk/aws-ecs": "^2.0.0",
-    "@aws-cdk/aws-ec2": "^2.0.0",
-    "@aws-cdk/aws-ecr": "^2.0.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "^2.0.0",
-    "@aws-cdk/aws-route53": "^2.0.0",
-    "@aws-cdk/aws-route53-targets": "^2.0.0"
+    "aws-cdk-lib": "^2.128.0",
+    "aws-sdk": "^2.1566.0",
+    "constructs": "^10.3.0",
+    "dotenv": "^16.4.1"
   }
 }

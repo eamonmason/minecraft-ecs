@@ -2,3 +2,4 @@ records-changed.json
 .env
 cdk.out
 cdk.context.json
+node_modules
