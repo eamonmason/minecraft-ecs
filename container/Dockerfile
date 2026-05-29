@@ -3,10 +3,10 @@ FROM amazonlinux:latest
 RUN yum -y update && \
     yum -y install tar gzip findutils systemd-udev jq awscli unzip procps-ng && \
     cd /usr/local && \
-    CORETTO_DOWNLOAD_URL="amazon-corretto-22-x64-linux-jdk.tar.gz" && \
+    CORETTO_DOWNLOAD_URL="amazon-corretto-25-x64-linux-jdk.tar.gz" && \
     curl -LO https://corretto.aws/downloads/latest/${CORETTO_DOWNLOAD_URL} && \    
     tar -xvf ${CORETTO_DOWNLOAD_URL} && \
-    JAVA_INSTALL=$(find /usr/local/amazon-corretto-22* -maxdepth 0 -type d) && \
+    JAVA_INSTALL=$(find /usr/local/amazon-corretto-25* -maxdepth 0 -type d) && \
     update-alternatives --install /usr/bin/java java ${JAVA_INSTALL}/bin/java 1
 
 # Retrieve latest version of the minecraft JAR
